@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Entity;
-
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use App\Repository\PostRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -42,6 +43,23 @@ class Post
     {
         return $this->id;
     }
+
+    /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="post")
+     */
+    private $comments;
+
+    /**
+     * Post constructor.
+     * @throws \Exception
+     */
+    public function __construct()
+    {
+        $this->date = new \DateTimeImmutable();
+        $this->comments = new ArrayCollection();
+    }
+
 
     public function getTitle(): ?string
     {
@@ -90,5 +108,13 @@ class Post
         $this->img = $img;
 
         return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
     }
 }

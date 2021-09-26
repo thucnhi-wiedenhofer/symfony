@@ -21,6 +21,21 @@
                     <p class="mt-4">{{post.content}}</p>
                 </div>
             </div>
+            <hr class="my-1">
+            <div class="row m-5">
+                <div class="col-xl-6 col-md-6 col-sm-12 justify-content-center">
+                    {{ form_start(form) }}
+                        {{ form_row(form.author) }}
+                        {{ form_row(form.content) }}
+                        <button type="submit" class="btn btn-primary mt-3">Envoyer</button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+            <ul>
+                {% for comment in post.comments %}
+                    <li>{{ comment.author }} : {{ comment.content }}</li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 

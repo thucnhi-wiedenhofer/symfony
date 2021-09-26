@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Post;
+use App\Entity\Comment;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -30,6 +31,27 @@ class AppFixtures extends Fixture
         $a3->setDate(\DateTimeImmutable::createFromFormat('Y-m-d H:i:s', "2021-09-15 12:00:00"));
         $a3->setImg("plat.jpg");
         $manager->persist($a3);
+
+        $c1 = new Comment();
+        $c1->setAuthor("");
+        $c1->setContent("Délicieux et rapides, que demander de plus!");
+        $c1->setDate(\DateTimeImmutable::createFromFormat('Y-m-d H:i:s', "2021-09-13 12:00:00"));
+        $c1->setPost($a1);
+        $manager->persist($c1);
+
+        $c2 = new Comment();
+        $c2->setAuthor("");
+        $c2->setContent("Ces recettes nous font voyager");
+        $c2->setDate(\DateTimeImmutable::createFromFormat('Y-m-d H:i:s', "2021-09-13 12:00:00"));
+        $c2->setPost($a2);
+        $manager->persist($c2);
+
+        $c3 = new Comment();
+        $c3->setAuthor("");
+        $c3->setContent("Ma grand mère faisait la même recette");
+        $c3->setDate(\DateTimeImmutable::createFromFormat('Y-m-d H:i:s', "2021-09-13 12:00:00"));
+        $c3->setPost($a3);
+        $manager->persist($c3);
 
         $manager->flush();
     }
