@@ -1,0 +1,32 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog{% endblock %}
+
+{% block monTitre %} Liste des Articles {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            {% for post in posts %}
+                <div class="col-xl-4 col-md-6 col-sm-12">
+                    <div class="card mb-3">
+                        <h4 class="card-tittle m-2">{{post.title}}</h4>
+                        <div class="card-body">
+                            <img src="{{asset('images/' ~ post.img)}}" class="imgArticle img-fluid">
+                            <p class="card-text mt-3">{{post.content}}</p>
+                        </div>
+
+                        <div class="card-body">
+                            <a href="{{ path('afficher_article', {'id': post.id })}}" class="card-link">Voir</a>
+                            <a href="#" class="card-link">Another link</a>
+                        </div>
+                        <div class="card-footer">
+                            posté le: {{post.date|date('d/m/Y H:i:s')}}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

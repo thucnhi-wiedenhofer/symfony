@@ -1,0 +1,23 @@
+.imgArticle{
+    object-fit:cover;
+}
+
+.imgArticleAdmin{
+    width:70px;
+    height:auto;    
+}
+
+.jumbotron{
+    padding: 2rem 1rem;
+  margin-bottom: 2rem;  
+}
+/* X-Small devices (portrait phones, less than 576px)*/
+@media (min-width: 576px) {
+  .jumbotron {
+    padding: 4rem 2rem;
+  }
+}
+
+.jumbotron-fluid {
+  padding: 0.3rem 1.2rem;  
+}
