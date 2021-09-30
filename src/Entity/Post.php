@@ -1,13 +1,21 @@
 <?php
 
 namespace App\Entity;
+
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use App\Repository\PostRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=PostRepository::class)
+ * @Vich\Uploadable
  */
 class Post
 {
@@ -20,12 +28,15 @@ class Post
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $title;
 
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
+     * @Assert\Length(min=10)
      */
     private $content;
 
@@ -39,6 +50,26 @@ class Post
      */
     private $img;
 
+    /**
+     * @Vich\UploadableField(mapping="post_image", fileNameProperty="img")  
+     */
+    private $imageFile;
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(?File $imageFile= null): self
+    {
+        $this->imageFile = $imageFile;
+        if($this->imageFile instanceof UploadedFile){
+            $this->updated_at= new \DateTimeImmutable('now');
+        }
+        return $this;
+
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -49,6 +80,11 @@ class Post
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="post")
      */
     private $comments;
+
+    /**
+     * @ORM\Column(type="datetime_immutable")
+     */
+    private $updated_at;
 
     /**
      * Post constructor.
@@ -103,7 +139,7 @@ class Post
         return $this->img;
     }
 
-    public function setImg(string $img): self
+    public function setImg(?string $img): self
     {
         $this->img = $img;
 
@@ -116,5 +152,17 @@ class Post
     public function getComments(): Collection
     {
         return $this->comments;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updated_at): self
+    {
+        $this->updated_at = $updated_at;
+
+        return $this;
     }
 }

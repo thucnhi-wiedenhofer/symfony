@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block monTitre %} Page administrateur {% endblock %}
+
+{% block body %}
+<a class="btn btn-success m-3" href="{{ path('blog_create')}}">Ajouter</a>
+    <table class="table">
+        <tr class="table-primary">
+            <td>Id</td>
+            <td>Titre</td>
+            <td>texte</td>
+            <td>Image</td>
+            <td>Date</td>
+            <td>Actions</td>
+        </tr>
+        {% for post in posts %}
+        <tr>
+             <td>{{ post.id }}</td> 
+            <td>{{ post.title }}</td>
+            <td>{{ post.content }}</td>
+            <td ><img src="{{asset('images/' ~ post.img)}}" class="imgArticleAdmin" alt="{{ post.title}}"></td>
+            <td>{{ post.date|date('d/m/Y H:i:s') }}</td>
+            <td>
+                <a class="btn btn-info" href="{{ path('blog_update',{'id': post.id})}}">Modifier</a>
+                <form method="POST" style="display:inline-block" action="{{ path('blog_delete',{'id': post.id})}}"  onSubmit="return confirm('confirmer la suppression?')">
+                    <input type="hidden" name="_method" value="delete">
+                    <input type="hidden" name="_token" value="{{ csrf_token('SUP'~ post.id) }}">
+                    <input type="submit" class="btn btn-danger" value="supprimer">
+                </form>
+            </td>          
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

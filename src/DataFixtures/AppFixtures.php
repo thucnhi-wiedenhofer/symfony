@@ -15,7 +15,7 @@ class AppFixtures extends Fixture
         $a1->setTitle("Recettes Express");
         $a1->setContent("Repas prêt en 30 minutes chrono");
         $a1->setDate(\DateTimeImmutable::createFromFormat('Y-m-d H:i:s', "2021-09-13 12:00:00"));
-        $a1->setImg("moules.jpg");
+        $a1->setImg("moules.jpg");        
         $manager->persist($a1);
 
         $a2 = new Post();

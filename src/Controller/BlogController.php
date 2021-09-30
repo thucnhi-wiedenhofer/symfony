@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Post;
+use App\Form\PostType;
 use App\Form\CommentType;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,7 +30,7 @@ class BlogController extends AbstractController
 
     /**
      * @Route("/article/{id}" , name="afficher_article")
-     * * @param Post $post
+     * @param Post $post
      * @param Request $request
      * @return Response
      * @throws \Exception
@@ -48,4 +50,6 @@ class BlogController extends AbstractController
             "form" => $form->createView()
         ]);
     }
+
+    
 }

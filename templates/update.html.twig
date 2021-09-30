@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {% endblock %}
+
+{% block monTitre %} Modifier un article {% endblock %}
+
+{% block body %}
+    {{ form_start(form)}}
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-6">
+                <img src="{{asset('images/' ~ post.img)}}" alt="{{ post.title }}" style="width:25%">
+                <div>{{ form_row(form.title)}}</div>
+                <div>{{form_row(form.content)}}</div>
+            </div>
+            <div class="col-6">
+                {{ form_widget(form)}}
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary mt-3" value="Modifier">
+    </div>
+    {{ form_end(form)}}
+{% endblock %}
