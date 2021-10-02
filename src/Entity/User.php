@@ -73,7 +73,7 @@ class User implements UserInterface
 
     public function getPasswordVerify(): ?string
     {
-        return $this->getPasswordVerify();
+        return $this->passwordVerify;
     }
 
     public function setPasswordVerify(string $passwordVerify): self

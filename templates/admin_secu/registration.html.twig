@@ -1,18 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscription{% endblock %}
+{% block title %} Inscription {% endblock %}
 
 {% block monTitre %} Inscription {% endblock %}
 
 
 {% block body %}
- {{ form_start(form)}}
-    {{ form_row(form.username, {
-     "attr" => {"placeholder": "Saisir votre login"
-     },
-     "label" => "Votre Login"
-    })}}   
-    <input type="submit" class="btn btn-danger" value="Enregistrer">
-{{ form_end(form)}}
 
+ {{ form_start(form) }}
+ <div class="jumbotron">
+    <div class="row d-flex justify-content-center">
+        <div class="col-6">  
+            {{form_row(form.username,{
+                "attr" : {"placeholder":"Saisir votre login"},
+                "label" : "Votre login"
+            })}}
+            {{ form_widget(form) }}
+            <input type="submit" class="btn btn-primary mt-3" value="Enregistrer">
+            {{ form_end(form) }}
+        </div>
+        
+    </div>
+</div>
 {% endblock %}

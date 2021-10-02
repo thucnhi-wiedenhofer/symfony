@@ -14,8 +14,16 @@ class RegisterType extends AbstractType
     {
         $builder
             ->add('username')
-            ->add('password', PasswordType::class)
-            ->add('passwordVerify', PasswordType::class)
+            ->add('password', PasswordType::class,[
+                "label" => "Password :",
+                "attr" => ["class"=> "form-control"],
+                "row_attr" => ["class"=> "form-group mt-3"]
+            ])
+            ->add('passwordVerify', PasswordType::class,[
+                "label" => "Verification Password :",
+                "attr" => ["class"=> "form-control"],
+                "row_attr" => ["class"=> "form-group mt-3"]
+            ])
         ;
     }
 

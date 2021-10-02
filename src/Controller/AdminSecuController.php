@@ -18,7 +18,7 @@ class AdminSecuController extends AbstractController
      */
     public function index(Request $request, EntityManagerInterface $entityManager, UserPasswordEncoderInterface $encoder): Response
     {
-        $user= new User();
+        $user = new User();
         $form = $this-> createForm(RegisterType::class, $user);
 
         $form->handleRequest($request);

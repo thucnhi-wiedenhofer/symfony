@@ -23,8 +23,10 @@
                 </div>
             </div>
             <hr class="my-1">
-            <div class="row m-5">
-                <div class="col-xl-6 col-md-6 col-sm-12 justify-content-center">
+            <div class="row m-5 d-flex justify-content-center">
+                
+                <div class="col-xl-6 col-md-6 col-sm-12 ">
+                    <h4>Ecrire un commentaire</h4>
                     {{ form_start(form) }}
                         {{ form_row(form.author) }}
                         {{ form_row(form.content) }}
@@ -33,6 +35,7 @@
                 </div>
             </div>
             <ul>
+                <h4>Commentaires:</h4>
                 {% for comment in post.comments %}
                     <li>{{ comment.author }} : {{ comment.content }}</li>
                 {% endfor %}
