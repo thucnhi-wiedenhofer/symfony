@@ -4,9 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Post;
-use App\Form\PostType;
 use App\Form\CommentType;
-use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block monTitre %} Inscription {% endblock %}
+
+
+{% block body %}
+ {{ form_start(form)}}
+    {{ form_row(form.username, {
+     "attr" => {"placeholder": "Saisir votre login"
+     },
+     "label" => "Votre Login"
+    })}}   
+    <input type="submit" class="btn btn-danger" value="Enregistrer">
+{{ form_end(form)}}
+
+{% endblock %}

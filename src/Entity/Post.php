@@ -82,7 +82,7 @@ class Post
     private $comments;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime", nullable=true)     
      */
     private $updated_at;
 
@@ -154,12 +154,12 @@ class Post
         return $this->comments;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updated_at;
     }
 
-    public function setUpdatedAt(\DateTimeImmutable $updated_at): self
+    public function setUpdatedAt(\DateTime $updated_at): self
     {
         $this->updated_at = $updated_at;
 
