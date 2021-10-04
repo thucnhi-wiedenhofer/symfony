@@ -24,6 +24,7 @@ class AdminSecuController extends AbstractController
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
+            $user->setRoles("ROLE_USER");
             $passwordCrypt = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($passwordCrypt);
             $entityManager->persist($user);
